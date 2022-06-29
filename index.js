@@ -17,15 +17,27 @@ async function fetchUser() {
     </div>`
     */
 
-  //now you want to convert the array of objects into the above html, and to manipulate an entire array, you use .map
+  //now you want to convert the array of objects into the above html, and to manipulate an entire array, you use .map. ignore new-HTML till line 60
   const usersDataHTML = usersData
     .map(
-      (user) => `<div class="user-card">
+      (user) =>
+        /* original-HTML:
+      `<div class="user-card">
   <div class="user-card__container">
       <h3>User's Name</h3>
       <p><b>Email:</b> email@email.com</p>
       <p><b>Phone:</b> 0000000000</p>
       <p><b>Website:</b> <a href="https://website.website" target="_blank">website.website</a></p>
+  </div>
+</div>`
+*/
+        // new-HTML
+        `<div class="user-card">
+  <div class="user-card__container">
+      <h3>${user.name}</h3>
+      <p><b>Email:</b> ${user.email}</p>
+      <p><b>Phone:</b> ${user.phone}</p>
+      <p><b>Website:</b> <a href="${user.website}" target="_blank">${user.website}</a></p>
   </div>
 </div>`
     )
@@ -40,11 +52,11 @@ async function fetchUser() {
   userListElement.innerHTML = usersDataHTML; //here, userListElements HTML is being set to userDataHTML which is all the user data
 
   //Now all users have a card(each element in the array), however the properties arent dynamic.
+
   //So lets look again at the json to see the property names
   // console.log(usersData);
   //here, there is a 'name' property, 'Email', 'Phone', 'Website'
+  //remember, the argument that accesses the properties is 'user' in the array map above. thus, you access the properties with user.name, user.email,etc
+  //Now, make the above HTML dynamic with the properties(see new-HTML [line 35-42])
 }
 fetchUser();
-
-
-
