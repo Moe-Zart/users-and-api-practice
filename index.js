@@ -1,5 +1,6 @@
 // API 1: "https://jsonplaceholder.typicode.com/users"
 // API 2: "https://jsonplaceholder.typicode.com/posts?userId=:id"
+
 async function fetchUser() {
   const users = await fetch("https://jsonplaceholder.typicode.com/users"); // wait for the backend to get back to us
   const usersData = await users.json(); //wait for backend to turn into frontend readable code
@@ -31,8 +32,9 @@ async function fetchUser() {
   </div>
 </div>`
 */
-        // new-HTML
-        `<div class="user-card">
+
+        // new-HTML             //the refer to line 68 for the onclick below
+        `<div class="user-card" onclick="showUserPosts(${user.id})"> 
   <div class="user-card__container">
       <h3>${user.name}</h3>
       <p><b>Email:</b> ${user.email}</p>
@@ -60,3 +62,11 @@ async function fetchUser() {
   //Now, make the above HTML dynamic with the properties(see new-HTML [line 35-42])
 }
 fetchUser();
+
+//Now we want to reroute the javascript to user.html for the pages when you click on a user
+
+//Create a new function called showUserPosts
+//Now add onclick to a new function in the above HTML
+function showUserPosts(id) { //the user.id on like 37 is passed into this function
+  window.location.href = `${window.location.origin}/user.html`; //reroutes to user.html note:the window.location.origin is a dynamic way of setting the link to the user.html)(e.g:http://127.0.0.1:5500/user.html could change to moe-zart.github.io/users-and-api-practice/user.html)
+}
