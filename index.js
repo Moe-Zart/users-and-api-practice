@@ -66,7 +66,10 @@ fetchUser();
 //Now we want to reroute the javascript to user.html for the pages when you click on a user
 
 //Create a new function called showUserPosts
-//Now add onclick to a new function in the above HTML
+//Now add onclick to showUserPosts(user.id) in the above HTML
 function showUserPosts(id) { //the user.id on like 37 is passed into this function
-  window.location.href = `${window.location.origin}/user.html`; //reroutes to user.html note:the window.location.origin is a dynamic way of setting the link to the user.html)(e.g:http://127.0.0.1:5500/user.html could change to moe-zart.github.io/users-and-api-practice/user.html)
+  localStorage.setItem("id",id); //the first "id" is just the key name (not important), while the second id is the value of the user.id which is user.id 
+  //^saves the id in local storage so that javascript remembers the id and so that we can make a dynamic api for all the posts for its id in user.js
+  window.location.href = `${window.location.origin}/user.html`; 
+  //^reroutes to user.html note:the window.location.origin is a dynamic way of setting the link to the user.html)(e.g:http://127.0.0.1:5500/user.html could change to moe-zart.github.io/users-and-api-practice/user.html)
 }
